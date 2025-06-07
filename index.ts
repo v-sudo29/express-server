@@ -22,6 +22,12 @@ app.all('/{*any}', (req: Request, res: Response): Promise<void> => {
   }
 })
 
+app.use((err, req, res, next) => {
+  // need all four parameters to be recognized as an error middleware function
+  console.error(err)
+  res.status(500).send('Error')
+})
+
 const PORT = process.env.PORT || 3000
 
 app.listen(PORT, () => {
