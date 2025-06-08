@@ -1,11 +1,16 @@
 import express, { Request, Response } from 'express'
 import fs from 'fs'
+import path from 'path'
 import 'dotenv/config'
 import authorRouter from './routes/authorRouter'
 import indexRouter from './routes/indexRouter'
 import bookRouter from 'routes/bookRouter'
 
 const app = express()
+
+// Enable EJS as the view engine - our app should look for templates in the /views directory
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
 
 app.use('/authors', authorRouter)
 app.use('/', indexRouter)

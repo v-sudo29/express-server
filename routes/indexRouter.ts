@@ -3,11 +3,19 @@ import fs from 'fs'
 
 const indexRouter = Router()
 
+const links = [
+  { href: '/', text: 'Home' },
+  { href: 'about', text: 'About' },
+]
+
+const users = ['Rose', 'Cake', 'Biff']
+
 indexRouter.get('/', (req: Request, res: Response) => {
   try {
-    const page = fs.readFileSync('index.html', 'utf8')
-    console.log(req.body)
-    res.send(page)
+    res.render('index', { message: 'EJS rocks!', links: links, users: users })
+    // const page = fs.readFileSync('index.html', 'utf8')
+    // console.log(req.body)
+    // res.send(page)
   } catch (err) {
     console.log(err)
   } finally {
