@@ -1,3 +1,4 @@
+import { getBookById } from 'controllers/authorController'
 import { Router, Response, Request } from 'express'
 
 const bookRouter = Router()
@@ -14,16 +15,7 @@ bookRouter.get('/', (req: Request, res: Response) => {
   }
 })
 
-bookRouter.get('/:bookId', (req: Request, res: Response) => {
-  try {
-    const { bookId } = req.params
-    res.send(`Book id: ${bookId}`)
-  } catch (err) {
-    console.log(err)
-  } finally {
-    return
-  }
-})
+bookRouter.get('/:bookId', getBookById)
 
 bookRouter.get('/:bookId/reserve', (req: Request, res: Response) => {
   try {
