@@ -1,51 +1,17 @@
+import {
+  getAboutPage,
+  getContactPage,
+  getHomePage,
+} from 'controllers/indexController'
 import { Router, Response, Request } from 'express'
-import fs from 'fs'
 
 const indexRouter = Router()
 
-const links = [
-  { href: '/', text: 'Home' },
-  { href: 'about', text: 'About' },
-]
+indexRouter.get('/', getHomePage)
 
-const users = ['Rose', 'Cake', 'Biff']
+indexRouter.get('/about', getAboutPage)
 
-indexRouter.get('/', (req: Request, res: Response) => {
-  try {
-    res.render('index', { message: 'EJS rocks!', links: links, users: users })
-    // const page = fs.readFileSync('index.html', 'utf8')
-    // console.log(req.body)
-    // res.send(page)
-  } catch (err) {
-    console.log(err)
-  } finally {
-    return
-  }
-})
-
-indexRouter.get('/about', (req: Request, res: Response): Promise<void> => {
-  try {
-    const data = fs.readFileSync('about.html', 'utf8')
-    res.send(data)
-  } catch (err) {
-    console.log(err)
-    res.sendStatus(500)
-  } finally {
-    return
-  }
-})
-
-indexRouter.get('/contact-me', (req: Request, res: Response): Promise<void> => {
-  try {
-    const data = fs.readFileSync('contact-me.html', 'utf8')
-    res.send(data)
-  } catch (err) {
-    console.log(err)
-    res.sendStatus(500)
-  } finally {
-    return
-  }
-})
+indexRouter.get('/contact-me', getContactPage)
 
 indexRouter.get(
   '/:name/listings/:listingId',
