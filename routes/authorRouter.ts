@@ -1,17 +1,9 @@
-import { Router, Request, Response } from 'express'
-import { getAuthorById } from '../controllers/authorController'
+import { Router } from 'express'
+import { getAllAuthors, getAuthorById } from '../controllers/authorController'
 
 const authorRouter = Router()
 
-authorRouter.get('/', (req: Request, res: Response): Promise<void> => {
-  try {
-    res.send('All authors!')
-  } catch (err) {
-    console.log(err)
-  } finally {
-    return
-  }
-})
+authorRouter.get('/', getAllAuthors)
 
 authorRouter.get('/:authorId', getAuthorById)
 

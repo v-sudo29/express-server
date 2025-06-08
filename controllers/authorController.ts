@@ -14,3 +14,13 @@ export const getAuthorById = asyncHandler(async (req, res) => {
 
   res.send(`Author name: ${author.name}`)
 })
+
+export const getAllAuthors = asyncHandler(async (req, res) => {
+  const allAuthors = await db.getAllAuthors()
+
+  if (!allAuthors) {
+    throw new CustomNotFoundError('There are no authors')
+  }
+
+  res.send(`All authors: ${allAuthors.join(', ')}`)
+})

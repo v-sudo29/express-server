@@ -12,4 +12,8 @@ const getAuthorById = async (authorId) => {
   return db.find((author) => author.id === Number(authorId))
 }
 
-export default { getAuthorById }
+const getAllAuthors = async () => {
+  return db.map((author) => author.name)
+}
+
+export default { getAuthorById, getAllAuthors }
