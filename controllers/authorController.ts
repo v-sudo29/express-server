@@ -27,19 +27,3 @@ export const getAllAuthors = asyncHandler(async (req, res) => {
 
   res.send(`All authors: ${allAuthors.join(', ')}`)
 })
-
-/**
- * Book controllers
- * */
-
-export const getBookById = asyncHandler(async (req, res) => {
-  const { bookId } = req.params
-
-  const book = await db.getBookById(bookId)
-
-  if (!book) {
-    throw new CustomNotFoundError('Book not found :(')
-  }
-
-  res.send(`Book name: ${book.name}`)
-})

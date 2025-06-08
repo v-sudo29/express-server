@@ -20,4 +20,13 @@ const getBookById = async (bookId) => {
   return db.find((book) => book.bookId === bookId)
 }
 
-export default { getAuthorById, getAllAuthors, getBookById }
+const getAllBooks = async () => {
+  return db.map((book) => book.book)
+}
+
+export default {
+  getAuthorById,
+  getAllAuthors,
+  getBookById,
+  getAllBooks,
+}

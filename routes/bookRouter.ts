@@ -1,19 +1,11 @@
-import { getBookById } from 'controllers/authorController'
+import { getAllBooks, getBookById } from 'controllers/bookController'
 import { Router, Response, Request } from 'express'
 
 const bookRouter = Router()
 /**
  * res.send - general-purpose method for sending a response, it is flexible with what data we can send since it will automatically set the Content-Type header based on what data you pass it. For example, if we pass in an object, it will stringify it as JSON and set the Content-Type header to application/json
  */
-bookRouter.get('/', (req: Request, res: Response) => {
-  try {
-    res.send('All books!')
-  } catch (err) {
-    console.log(err)
-  } finally {
-    return
-  }
-})
+bookRouter.get('/', getAllBooks)
 
 bookRouter.get('/:bookId', getBookById)
 
